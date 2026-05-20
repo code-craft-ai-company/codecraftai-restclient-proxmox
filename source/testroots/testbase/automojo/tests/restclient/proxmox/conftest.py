@@ -17,8 +17,8 @@ from automojo.credentials.proxmoxapitokencredential import (
     ProxmoxApiTokenCredential
 )
 
-from automojo.interop.proxmox.aspectsproxmox import AspectsProxmox
-from automojo.interop.proxmox.proxmoxclient import ProxmoxClient
+from automojo.restclient.proxmox.aspectsproxmox import AspectsProxmox
+from automojo.restclient.proxmox.proxmoxclient import ProxmoxClient
 
 
 PROXMOX_HOST = "pve.example.test"

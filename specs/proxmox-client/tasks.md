@@ -2,7 +2,7 @@
 
 ## Package Skeleton
 
-- [x] 1. Create `source/packages/automojo/interop/proxmox/` package tree.
+- [x] 1. Create `source/packages/automojo/restclient/proxmox/` package tree.
 - [x] 2. Add `aspectsproxmox.py` with `DEFAULT_PROXMOX_ASPECTS`.
 
 ## Client Core

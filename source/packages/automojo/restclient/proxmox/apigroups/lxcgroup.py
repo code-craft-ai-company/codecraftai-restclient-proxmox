@@ -16,19 +16,19 @@ from typing import List, Optional
 
 from automojo.restclient.base.restapigroup import RestApiGroup
 
-from automojo.interop.proxmox.aspectsproxmox import (
+from automojo.restclient.proxmox.aspectsproxmox import (
     AspectsProxmox, DEFAULT_PROXMOX_ASPECTS
 )
-from automojo.interop.proxmox.apigroups.groupsupport import (
+from automojo.restclient.proxmox.apigroups.groupsupport import (
     compose_leaf, extract_data, extract_data_list, require_node_name,
     require_vmid
 )
-from automojo.interop.proxmox.apigroups.qemugroup import build_task_handle
-from automojo.interop.proxmox.model.proxmoxcontainerstatus import (
+from automojo.restclient.proxmox.apigroups.qemugroup import build_task_handle
+from automojo.restclient.proxmox.model.proxmoxcontainerstatus import (
     ProxmoxContainerStatus
 )
-from automojo.interop.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
-from automojo.interop.proxmox.specs.proxmoxcontainercreatespec import (
+from automojo.restclient.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
+from automojo.restclient.proxmox.specs.proxmoxcontainercreatespec import (
     ProxmoxContainerCreateSpec
 )
 

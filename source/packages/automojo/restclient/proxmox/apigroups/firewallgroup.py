@@ -16,17 +16,17 @@ from typing import List, Optional
 
 from automojo.restclient.base.restapigroup import RestApiGroup
 
-from automojo.interop.proxmox.aspectsproxmox import (
+from automojo.restclient.proxmox.aspectsproxmox import (
     AspectsProxmox, DEFAULT_PROXMOX_ASPECTS
 )
-from automojo.interop.proxmox.apigroups.groupsupport import (
+from automojo.restclient.proxmox.apigroups.groupsupport import (
     compose_leaf, extract_data_list, raise_for_status, require_node_name,
     require_vmid
 )
-from automojo.interop.proxmox.model.proxmoxfirewallrule import (
+from automojo.restclient.proxmox.model.proxmoxfirewallrule import (
     ProxmoxFirewallRule
 )
-from automojo.interop.proxmox.specs.proxmoxfirewallrulespec import (
+from automojo.restclient.proxmox.specs.proxmoxfirewallrulespec import (
     ProxmoxFirewallRuleSpec
 )
 

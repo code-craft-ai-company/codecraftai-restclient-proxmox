@@ -12,10 +12,10 @@ __copyright__ = "Copyright 2026, Automation Mojo LLC"
 __credits__ = []
 
 
-from automojo.interop.proxmox.aspectsproxmox import (
+from automojo.restclient.proxmox.aspectsproxmox import (
     AspectsProxmox, DEFAULT_PROXMOX_ASPECTS
 )
-from automojo.interop.proxmox.proxmoxclient import ProxmoxClient
+from automojo.restclient.proxmox.proxmoxclient import ProxmoxClient
 
 
 __all__ = ["AspectsProxmox", "DEFAULT_PROXMOX_ASPECTS", "ProxmoxClient"]

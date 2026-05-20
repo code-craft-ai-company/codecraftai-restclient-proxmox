@@ -26,7 +26,7 @@ that are well design, cohesive, and easy to use and that provide rapid but stabl
 
 # Project Overview
 
-The `automojo-interop-proxmox` package is the venue-specific REST client
+The `automojo-restclient-proxmox` package is the venue-specific REST client
 for Proxmox VE, an open-source virtualization platform combining KVM
 virtual machines and LXC containers under a clustered management plane.
 Proxmox exposes a REST API on port 8006 with a ticket-based session
@@ -49,10 +49,10 @@ Credentials enter as typed `ProxmoxApiTokenCredential` instances from
 `automojo-credentials`.
 
 # Testing Conventions
-The 'automojo-interop-proxmox' package repository utilizes the 'testbase' framework
+The 'automojo-restclient-proxmox' package repository utilizes the 'testbase' framework
 for tests that require live resources, and the 'unittest' framework for isolated
 component tests. Single-host tests live under
-'source/testroots/automojo/tests/singlehost/interop/proxmox'.
+'source/testroots/automojo/tests/singlehost/restclient/proxmox'.
 
 Property-based tests (hypothesis) are required for paging, URL composition
 (node-scoped nested resources), and idempotent retry semantics.

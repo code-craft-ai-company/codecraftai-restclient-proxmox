@@ -16,13 +16,13 @@ from automojo.errors.exceptions import SemanticError
 
 from automojo.restclient.base.restapigroup import RestApiGroup
 
-from automojo.interop.proxmox.aspectsproxmox import (
+from automojo.restclient.proxmox.aspectsproxmox import (
     AspectsProxmox, DEFAULT_PROXMOX_ASPECTS
 )
-from automojo.interop.proxmox.apigroups.groupsupport import (
+from automojo.restclient.proxmox.apigroups.groupsupport import (
     compose_leaf, extract_data, require_node_name
 )
-from automojo.interop.proxmox.model.proxmoxtaskstatus import ProxmoxTaskStatus
+from automojo.restclient.proxmox.model.proxmoxtaskstatus import ProxmoxTaskStatus
 
 
 class TasksGroup(RestApiGroup):

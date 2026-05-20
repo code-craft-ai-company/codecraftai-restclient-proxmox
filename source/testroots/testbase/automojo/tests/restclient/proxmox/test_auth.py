@@ -18,8 +18,8 @@ from automojo.errors.exceptions import ConfigurationError
 
 from automojo.credentials.basiccredential import BasicCredential
 
-from automojo.interop.proxmox.proxmoxclient import ProxmoxClient
-from automojo.interop.proxmox.exceptions.proxmoxauthenticationerror import (
+from automojo.restclient.proxmox.proxmoxclient import ProxmoxClient
+from automojo.restclient.proxmox.exceptions.proxmoxauthenticationerror import (
     ProxmoxAuthenticationError
 )
 

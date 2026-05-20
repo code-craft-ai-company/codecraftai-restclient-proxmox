@@ -21,19 +21,19 @@ from automojo.errors.exceptions import SemanticError
 
 from automojo.restclient.base.restapigroup import RestApiGroup
 
-from automojo.interop.proxmox.aspectsproxmox import (
+from automojo.restclient.proxmox.aspectsproxmox import (
     AspectsProxmox, DEFAULT_PROXMOX_ASPECTS
 )
-from automojo.interop.proxmox.apigroups.groupsupport import (
+from automojo.restclient.proxmox.apigroups.groupsupport import (
     compose_leaf, extract_data, extract_data_list, raise_for_status,
     require_node_name, require_vmid
 )
-from automojo.interop.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
-from automojo.interop.proxmox.model.proxmoxvmstatus import ProxmoxVmStatus
-from automojo.interop.proxmox.specs.proxmoxvmclonespec import ProxmoxVmCloneSpec
-from automojo.interop.proxmox.specs.proxmoxvmcreatespec import ProxmoxVmCreateSpec
-from automojo.interop.proxmox.specs.proxmoxdiskspec import ProxmoxDiskSpec
-from automojo.interop.proxmox.specs.proxmoxnicspec import ProxmoxNicSpec
+from automojo.restclient.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
+from automojo.restclient.proxmox.model.proxmoxvmstatus import ProxmoxVmStatus
+from automojo.restclient.proxmox.specs.proxmoxvmclonespec import ProxmoxVmCloneSpec
+from automojo.restclient.proxmox.specs.proxmoxvmcreatespec import ProxmoxVmCreateSpec
+from automojo.restclient.proxmox.specs.proxmoxdiskspec import ProxmoxDiskSpec
+from automojo.restclient.proxmox.specs.proxmoxnicspec import ProxmoxNicSpec
 
 
 def build_task_handle(*, client: Any, node_name: str,

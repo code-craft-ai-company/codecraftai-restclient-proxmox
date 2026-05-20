@@ -17,10 +17,10 @@ import pytest
 
 from automojo.errors.exceptions import SemanticError
 
-from automojo.interop.proxmox.specs.proxmoxvmclonespec import ProxmoxVmCloneSpec
-from automojo.interop.proxmox.specs.proxmoxdiskspec import ProxmoxDiskSpec
-from automojo.interop.proxmox.specs.proxmoxnicspec import ProxmoxNicSpec
-from automojo.interop.proxmox.specs.proxmoxfirewallrulespec import (
+from automojo.restclient.proxmox.specs.proxmoxvmclonespec import ProxmoxVmCloneSpec
+from automojo.restclient.proxmox.specs.proxmoxdiskspec import ProxmoxDiskSpec
+from automojo.restclient.proxmox.specs.proxmoxnicspec import ProxmoxNicSpec
+from automojo.restclient.proxmox.specs.proxmoxfirewallrulespec import (
     ProxmoxFirewallRuleSpec
 )
 

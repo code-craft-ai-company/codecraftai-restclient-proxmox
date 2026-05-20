@@ -2,7 +2,7 @@
 Automation Mojo Interop - Proxmox VE
 =========================================
 
-The ``automojo-interop-proxmox`` package is the venue-specific REST client for Proxmox VE,
+The ``automojo-restclient-proxmox`` package is the venue-specific REST client for Proxmox VE,
 an open-source virtualization platform combining KVM virtual machines and LXC containers
 under a clustered management plane. Proxmox exposes a REST API on port 8006 with a
 ticket-based session scheme; the ``PVEAuthCookie`` ticket and ``CSRFPreventionToken`` are
@@ -23,8 +23,8 @@ Repository Structure
 
 - ``development/`` - Runtime environment scripts.
 - ``repository-setup/`` - Repository homing and setup scripts.
-- ``source/packages/automojo/interop/proxmox/`` - Package source code.
-- ``source/testroots/testbase/automojo/tests/interop/proxmox/`` - TestBase test roots.
+- ``source/packages/automojo/restclient/proxmox/`` - Package source code.
+- ``source/testroots/testbase/automojo/tests/restclient/proxmox/`` - TestBase test roots.
 - ``specs/`` - Requirements, design, and task documentation (Kiro-style).
 - ``userguide/`` - Standards, conventions, and documentation.
 

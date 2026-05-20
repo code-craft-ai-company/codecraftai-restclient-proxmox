@@ -52,7 +52,7 @@ Exceptions: `ProxmoxAuthenticationError`, `ProxmoxTaskFailedError`.
 ## Module Layout
 
 ```
-source/packages/automojo/interop/proxmox/
+source/packages/automojo/restclient/proxmox/
 ├── proxmoxclient.py
 ├── aspectsproxmox.py
 ├── apigroups/{clustergroup, nodesgroup, qemugroup, lxcgroup,

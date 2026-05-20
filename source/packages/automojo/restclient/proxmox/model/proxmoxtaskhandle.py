@@ -19,17 +19,17 @@ from typing import TYPE_CHECKING, Optional
 
 from automojo.errors.exceptions import SemanticError
 
-from automojo.interop.proxmox.aspectsproxmox import (
+from automojo.restclient.proxmox.aspectsproxmox import (
     AspectsProxmox, DEFAULT_PROXMOX_ASPECTS
 )
-from automojo.interop.proxmox.model.proxmoxtaskstatus import ProxmoxTaskStatus
-from automojo.interop.proxmox.exceptions.proxmoxtaskfailederror import (
+from automojo.restclient.proxmox.model.proxmoxtaskstatus import ProxmoxTaskStatus
+from automojo.restclient.proxmox.exceptions.proxmoxtaskfailederror import (
     ProxmoxTaskFailedError
 )
 
 
 if TYPE_CHECKING:
-    from automojo.interop.proxmox.proxmoxclient import ProxmoxClient
+    from automojo.restclient.proxmox.proxmoxclient import ProxmoxClient
 
 
 class ProxmoxTaskHandle:

@@ -25,20 +25,20 @@ from automojo.errors.exceptions import ConfigurationError
 
 from automojo.restclient.base.restclientbase import RestClientBase
 
-from automojo.interop.proxmox.aspectsproxmox import (
+from automojo.restclient.proxmox.aspectsproxmox import (
     AspectsProxmox, DEFAULT_PROXMOX_ASPECTS
 )
-from automojo.interop.proxmox.exceptions.proxmoxauthenticationerror import (
+from automojo.restclient.proxmox.exceptions.proxmoxauthenticationerror import (
     ProxmoxAuthenticationError
 )
-from automojo.interop.proxmox.apigroups.clustergroup import ClusterGroup
-from automojo.interop.proxmox.apigroups.nodesgroup import NodesGroup
-from automojo.interop.proxmox.apigroups.networkgroup import NetworkGroup
-from automojo.interop.proxmox.apigroups.storagegroup import StorageGroup
-from automojo.interop.proxmox.apigroups.qemugroup import QemuGroup
-from automojo.interop.proxmox.apigroups.lxcgroup import LxcGroup
-from automojo.interop.proxmox.apigroups.firewallgroup import FirewallGroup
-from automojo.interop.proxmox.apigroups.tasksgroup import TasksGroup
+from automojo.restclient.proxmox.apigroups.clustergroup import ClusterGroup
+from automojo.restclient.proxmox.apigroups.nodesgroup import NodesGroup
+from automojo.restclient.proxmox.apigroups.networkgroup import NetworkGroup
+from automojo.restclient.proxmox.apigroups.storagegroup import StorageGroup
+from automojo.restclient.proxmox.apigroups.qemugroup import QemuGroup
+from automojo.restclient.proxmox.apigroups.lxcgroup import LxcGroup
+from automojo.restclient.proxmox.apigroups.firewallgroup import FirewallGroup
+from automojo.restclient.proxmox.apigroups.tasksgroup import TasksGroup
 
 
 PROXMOX_DEFAULT_PORT = 8006

@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "automojo-interop-proxmox"
-description = "Automation Mojo - Proxmox VE interop client"
+name = "automojo-restclient-proxmox"
+description = "Automation Mojo - Proxmox VE REST client"
 version = "0.0.1"
 authors = []
 readme = "README.rst"
@@ -13,7 +13,9 @@ classifiers = [
 keywords = [
     "python",
     "automation",
-    "automojo"
+    "automojo",
+    "restclient",
+    "proxmox"
 ]
 packages = [{include="automojo", from="source/packages"}]
 
