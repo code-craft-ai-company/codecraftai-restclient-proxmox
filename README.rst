@@ -1,50 +1,65 @@
-=======================
-python-package-template
-=======================
-This is a template repository that can be used to quickly create a python package project.
+=========================================
+Automation Mojo Interop - Proxmox VE
+=========================================
 
-=========================
-Features of this Template
-=========================
-* Machine Setup
-* Virtual Environment Setup (Poetry)
-* PyPi Publishing
+The ``automojo-interop-proxmox`` package is the venue-specific REST client for Proxmox VE,
+an open-source virtualization platform combining KVM virtual machines and LXC containers
+under a clustered management plane. Proxmox exposes a REST API on port 8006 with a
+ticket-based session scheme; the ``PVEAuthCookie`` ticket and ``CSRFPreventionToken`` are
+handled inside this client via ``RestClientBase``'s authentication hook so callers see a
+uniform credential-in, calls-out shape.
 
-========================
-How to Use This Template
-========================
-- Click the 'Use this template' button
-- Fill in the information to create your repository
-- Checkout your new repository
-- Change the following in 'repository-config.ini'
-
-  #. 'PROJECT NAME'
-  #. 'REPOSITORY_NAME'
-
-- If you have machine dependencies to add, put them in 'setup-ubuntu-machine'
-- Modify the pyproject.toml file with the correct package-name, author, publishing information, etc.
-- Rename the VSCODE workspace file 'mv workspaces/default-workspace.template workspaces/(project name).template'
-- Replace the README.rst file with your own README
-- Update the LICENSE.txt file with your copyright information and license.
-- Add your dependencies with python poetry 'poetry add (dependency name)'
-- Drop your package code in 'source/packages'
-- Modify the name of your package root in 'pyproject.toml'
-
-  #. 'packages = [{include="(root folder name)", from="source/packages"}]'
-
-=================
-Code Organization
-=================
-* .vscode - Common tasks
-* development - This is where the runtime environment scripts are located
-* repository-setup - Scripts for homing your repository and to your checkout and machine setup
-* userguide - Where you put your user guide
-* source/packages - Put your root folder here 'source/packages/(root-module-folder)'
-* workspaces - This is where you add VSCode workspaces templates and where workspaces show up when homed.
-
-==========
-References
+Highlights
 ==========
 
-- `User Guide <userguide/userguide.rst>`
-- `Coding Standards <userguide/10-00-coding-standards.rst>`
+- ``ProxmoxClient`` — a ``RestClientBase`` subclass handling ticket-based session auth and CSRF token management.
+- Cluster and inventory enumeration — cluster and node enumeration, network (bridge/VLAN) inspection, and storage pool enumeration.
+- VM and container lifecycle — create/clone/start/stop/reboot/destroy for both KVM VMs and LXC containers, plus disk and NIC management and template-based provisioning.
+- Firewall and async tasks — firewall rule management and async-task tracking via the ``UPID`` returned by Proxmox for long-running operations.
+- Aspects-driven transport — every behaviour-bearing call accepts ``aspects: AspectsRest = DEFAULT_PROXMOX_ASPECTS``; credentials enter as typed ``ProxmoxApiTokenCredential`` instances from ``automojo-credentials``.
+
+Repository Structure
+====================
+
+- ``development/`` - Runtime environment scripts.
+- ``repository-setup/`` - Repository homing and setup scripts.
+- ``source/packages/automojo/interop/proxmox/`` - Package source code.
+- ``source/testroots/testbase/automojo/tests/interop/proxmox/`` - TestBase test roots.
+- ``specs/`` - Requirements, design, and task documentation (Kiro-style).
+- ``userguide/`` - Standards, conventions, and documentation.
+
+Environment Setup
+=================
+
+When working in a Codex container:
+
+.. code-block:: bash
+
+   ./development/setup-agent-container
+
+For local development:
+
+.. code-block:: bash
+
+   ./repository-setup/rehome-repository
+   ./development/setup-environment
+
+Running Tests
+=============
+
+.. code-block:: bash
+
+   source .venv/bin/activate
+   PYTHONPATH=source/packages:source/testroots/testbase python -m pytest source/testroots -q
+
+Standards and Conventions
+=========================
+
+- Naming conventions: ``userguide/10-02-naming-conventions.rst``
+- Code organization: ``userguide/10-01-code-organization.rst``
+- Coding standards: ``userguide/10-00-coding-standards.rst``
+
+Additional Resources
+====================
+
+- User guide entry point: ``userguide/userguide.rst``
