@@ -8,16 +8,16 @@
 """
 
 __author__ = "Myron Walker"
-__copyright__ = "Copyright 2026, Automation Mojo LLC"
+__copyright__ = "Copyright 2026, Code Craft AI LLC"
 __credits__ = []
 
 
 import pytest
 
-from automojo.restclient.proxmox.exceptions.proxmoxtaskfailederror import (
+from ccai.restclient.proxmox.exceptions.proxmoxtaskfailederror import (
     ProxmoxTaskFailedError
 )
-from automojo.restclient.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
+from ccai.restclient.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
 
 from conftest import PROXMOX_BASE
 
@@ -64,7 +64,7 @@ def test_task_timeout_raises(client, requests_mock):
         A UPID task that never reaches a terminal state raises
         :class:`TimeoutError` once the completion timeout elapses.
     """
-    from automojo.restclient.proxmox.aspectsproxmox import AspectsProxmox
+    from ccai.restclient.proxmox.aspectsproxmox import AspectsProxmox
 
     requests_mock.get(_STATUS_URL, json={"data": {"status": "running"}})
 

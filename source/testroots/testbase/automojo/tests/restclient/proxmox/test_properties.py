@@ -10,7 +10,7 @@
 """
 
 __author__ = "Myron Walker"
-__copyright__ = "Copyright 2026, Automation Mojo LLC"
+__copyright__ = "Copyright 2026, Code Craft AI LLC"
 __credits__ = []
 
 
@@ -21,13 +21,13 @@ import pytest
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
-from automojo.errors.exceptions import SemanticError
+from ccai.errors.exceptions import SemanticError
 
-from automojo.restclient.proxmox.apigroups.groupsupport import (
+from ccai.restclient.proxmox.apigroups.groupsupport import (
     API_BASE, compose_leaf
 )
-from automojo.restclient.proxmox.model.proxmoxtaskstatus import ProxmoxTaskStatus
-from automojo.restclient.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
+from ccai.restclient.proxmox.model.proxmoxtaskstatus import ProxmoxTaskStatus
+from ccai.restclient.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
 
 
 # Path segments that are non-empty and free of slash so per-segment
@@ -114,7 +114,7 @@ def test_task_handle_terminal_state(client, requests_mock, running_polls,
         task handle reports the correct terminal success/failure outcome.
     """
     from conftest import PROXMOX_BASE
-    from automojo.restclient.proxmox.aspectsproxmox import AspectsProxmox
+    from ccai.restclient.proxmox.aspectsproxmox import AspectsProxmox
 
     upid = "UPID:pve1:abc:task::root@pam:"
     status_url = "{}/api2/json/nodes/pve1/tasks/{}/status".format(

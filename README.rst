@@ -1,8 +1,8 @@
 =========================================
-Automation Mojo Interop - Proxmox VE
+Code Craft AI Interop - Proxmox VE
 =========================================
 
-The ``automojo-restclient-proxmox`` package is the venue-specific REST client for Proxmox VE,
+The ``codecraftai-restclient-proxmox`` package is the venue-specific REST client for Proxmox VE,
 an open-source virtualization platform combining KVM virtual machines and LXC containers
 under a clustered management plane. Proxmox exposes a REST API on port 8006 with a
 ticket-based session scheme; the ``PVEAuthCookie`` ticket and ``CSRFPreventionToken`` are
@@ -16,15 +16,15 @@ Highlights
 - Cluster and inventory enumeration — cluster and node enumeration, network (bridge/VLAN) inspection, and storage pool enumeration.
 - VM and container lifecycle — create/clone/start/stop/reboot/destroy for both KVM VMs and LXC containers, plus disk and NIC management and template-based provisioning.
 - Firewall and async tasks — firewall rule management and async-task tracking via the ``UPID`` returned by Proxmox for long-running operations.
-- Aspects-driven transport — every behaviour-bearing call accepts ``aspects: AspectsRest = DEFAULT_PROXMOX_ASPECTS``; credentials enter as typed ``ProxmoxApiTokenCredential`` instances from ``automojo-credentials``.
+- Aspects-driven transport — every behaviour-bearing call accepts ``aspects: AspectsRest = DEFAULT_PROXMOX_ASPECTS``; credentials enter as typed ``ProxmoxApiTokenCredential`` instances from ``codecraftai-credentials``.
 
 Repository Structure
 ====================
 
 - ``development/`` - Runtime environment scripts.
 - ``repository-setup/`` - Repository homing and setup scripts.
-- ``source/packages/automojo/restclient/proxmox/`` - Package source code.
-- ``source/testroots/testbase/automojo/tests/restclient/proxmox/`` - TestBase test roots.
+- ``source/packages/ccai/restclient/proxmox/`` - Package source code.
+- ``source/testroots/testbase/ccai/tests/restclient/proxmox/`` - TestBase test roots.
 - ``specs/`` - Requirements, design, and task documentation (Kiro-style).
 - ``userguide/`` - Standards, conventions, and documentation.
 

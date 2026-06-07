@@ -9,18 +9,18 @@
 """
 
 __author__ = "Myron Walker"
-__copyright__ = "Copyright 2026, Automation Mojo LLC"
+__copyright__ = "Copyright 2026, Code Craft AI LLC"
 __credits__ = []
 
 
 import pytest
 
-from automojo.errors.exceptions import SemanticError
+from ccai.errors.exceptions import SemanticError
 
-from automojo.restclient.proxmox.specs.proxmoxvmclonespec import ProxmoxVmCloneSpec
-from automojo.restclient.proxmox.specs.proxmoxdiskspec import ProxmoxDiskSpec
-from automojo.restclient.proxmox.specs.proxmoxnicspec import ProxmoxNicSpec
-from automojo.restclient.proxmox.specs.proxmoxfirewallrulespec import (
+from ccai.restclient.proxmox.specs.proxmoxvmclonespec import ProxmoxVmCloneSpec
+from ccai.restclient.proxmox.specs.proxmoxdiskspec import ProxmoxDiskSpec
+from ccai.restclient.proxmox.specs.proxmoxnicspec import ProxmoxNicSpec
+from ccai.restclient.proxmox.specs.proxmoxfirewallrulespec import (
     ProxmoxFirewallRuleSpec
 )
 

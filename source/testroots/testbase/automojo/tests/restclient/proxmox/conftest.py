@@ -7,18 +7,18 @@
 """
 
 __author__ = "Myron Walker"
-__copyright__ = "Copyright 2026, Automation Mojo LLC"
+__copyright__ = "Copyright 2026, Code Craft AI LLC"
 __credits__ = []
 
 
 import pytest
 
-from automojo.credentials.proxmoxapitokencredential import (
+from ccai.credentials.proxmoxapitokencredential import (
     ProxmoxApiTokenCredential
 )
 
-from automojo.restclient.proxmox.aspectsproxmox import AspectsProxmox
-from automojo.restclient.proxmox.proxmoxclient import ProxmoxClient
+from ccai.restclient.proxmox.aspectsproxmox import AspectsProxmox
+from ccai.restclient.proxmox.proxmoxclient import ProxmoxClient
 
 
 PROXMOX_HOST = "pve.example.test"

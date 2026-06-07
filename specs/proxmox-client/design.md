@@ -14,7 +14,7 @@ as first-class concerns in the client.
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  automojo-provisioning / venues / proxmox              │
+│  codecraftai-provisioning / venues / proxmox              │
 └──────────┬─────────────────────────────────────────────┘
            │
            ▼
@@ -52,7 +52,7 @@ Exceptions: `ProxmoxAuthenticationError`, `ProxmoxTaskFailedError`.
 ## Module Layout
 
 ```
-source/packages/automojo/restclient/proxmox/
+source/packages/ccai/restclient/proxmox/
 ├── proxmoxclient.py
 ├── aspectsproxmox.py
 ├── apigroups/{clustergroup, nodesgroup, qemugroup, lxcgroup,
@@ -66,9 +66,9 @@ source/packages/automojo/restclient/proxmox/
 
 ## See Also
 
-- `automojo-restclient-base/specs/restapigroup-enhancements/`
-- `automojo-provisioning/specs/venue-proxmox/`
-- `automojo-credentials/specs/proxmox-credentials/`
+- `codecraftai-restclient-base/specs/restapigroup-enhancements/`
+- `codecraftai-provisioning/specs/venue-proxmox/`
+- `codecraftai-credentials/specs/proxmox-credentials/`
 
 ---
 
