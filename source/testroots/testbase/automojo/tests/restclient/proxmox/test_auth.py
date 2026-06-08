@@ -8,18 +8,18 @@
 """
 
 __author__ = "Myron Walker"
-__copyright__ = "Copyright 2026, Automation Mojo LLC"
+__copyright__ = "Copyright 2026, Code Craft AI LLC"
 __credits__ = []
 
 
 import pytest
 
-from automojo.errors.exceptions import ConfigurationError
+from ccai.errors.exceptions import ConfigurationError
 
-from automojo.credentials.basiccredential import BasicCredential
+from ccai.credentials.basiccredential import BasicCredential
 
-from automojo.restclient.proxmox.proxmoxclient import ProxmoxClient
-from automojo.restclient.proxmox.exceptions.proxmoxauthenticationerror import (
+from ccai.restclient.proxmox.proxmoxclient import ProxmoxClient
+from ccai.restclient.proxmox.exceptions.proxmoxauthenticationerror import (
     ProxmoxAuthenticationError
 )
 
