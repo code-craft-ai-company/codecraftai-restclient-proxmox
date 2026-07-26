@@ -18,8 +18,8 @@ from urllib.parse import quote
 
 import pytest
 
-from hypothesis import HealthCheck, given, settings
-from hypothesis import strategies as st
+from ccai.testbase.properties import given
+from ccai.testbase.properties import strategies as st
 
 from ccai.errors.exceptions import SemanticError
 
@@ -40,7 +40,6 @@ _segment = st.text(
 
 
 @given(parts=st.lists(_segment, min_size=1, max_size=8))
-@settings(max_examples=200)
 def test_compose_leaf_is_deterministic_and_encoded(parts):
     """
         For any non-empty segment tuple the composed URL is deterministic,
@@ -56,9 +55,9 @@ def test_compose_leaf_is_deterministic_and_encoded(parts):
     assert first == "{}/{}".format(API_BASE, expected_tail)
 
 
-@given(prefix=st.lists(_segment, max_size=3),
+@given(
+    constraints={"max_examples": 200},prefix=st.lists(_segment, max_size=3),
        suffix=st.lists(_segment, max_size=3))
-@settings(max_examples=100)
 def test_compose_leaf_rejects_empty_segment(prefix, suffix):
     """
         An empty path segment anywhere in the parts list is rejected with a
@@ -69,9 +68,9 @@ def test_compose_leaf_rejects_empty_segment(prefix, suffix):
         compose_leaf(parts=parts)
 
 
-@given(prefix=st.lists(_segment, max_size=3),
+@given(
+    constraints={"max_examples": 100},prefix=st.lists(_segment, max_size=3),
        suffix=st.lists(_segment, max_size=3))
-@settings(max_examples=100)
 def test_compose_leaf_rejects_none_segment(prefix, suffix):
     """
         A ``None`` path segment anywhere in the parts list is rejected.
@@ -81,9 +80,7 @@ def test_compose_leaf_rejects_none_segment(prefix, suffix):
         compose_leaf(parts=parts)
 
 
-@given(count=st.integers(min_value=0, max_value=600))
-@settings(max_examples=40, deadline=None,
-          suppress_health_check=[HealthCheck.function_scoped_fixture])
+@given(count=st.integers(min_value=0, max_value=600), constraints={"max_examples": 100})
 def test_list_vms_total_over_long_lists(client, requests_mock, count):
     """
         VM enumeration remains total over arbitrarily long flat lists.
@@ -103,10 +100,9 @@ def test_list_vms_total_over_long_lists(client, requests_mock, count):
     assert len(vms) == count
 
 
-@given(running_polls=st.integers(min_value=0, max_value=20),
+@given(
+    constraints={"max_examples": 40},running_polls=st.integers(min_value=0, max_value=20),
        exit_ok=st.booleans())
-@settings(max_examples=60, deadline=None,
-          suppress_health_check=[HealthCheck.function_scoped_fixture])
 def test_task_handle_terminal_state(client, requests_mock, running_polls,
                                     exit_ok):
     """
@@ -138,7 +134,8 @@ def test_task_handle_terminal_state(client, requests_mock, running_polls,
     assert result.is_successful is exit_ok
 
 
-@given(status=st.sampled_from(["running", "stopped"]),
+@given(
+    constraints={"max_examples": 60},status=st.sampled_from(["running", "stopped"]),
        exitstatus=st.sampled_from(["OK", "error", None]))
 def test_task_status_invariants(status, exitstatus):
     """
