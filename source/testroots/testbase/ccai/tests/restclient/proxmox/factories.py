@@ -1,5 +1,5 @@
 """
-    .. module:: conftest
+    .. module:: factories
         :platform: Darwin, Linux, Unix, Windows
         :synopsis: Shared fixtures for the Proxmox VE interop client tests.
 
@@ -11,7 +11,11 @@ __copyright__ = "Copyright 2026, Code Craft AI LLC"
 __credits__ = []
 
 
-import pytest
+from collections.abc import Generator
+
+import requests_mock as requests_mock_module
+
+from ccai import testbase
 
 from ccai.credentials.proxmoxapitokencredential import (
     ProxmoxApiTokenCredential
@@ -24,9 +28,8 @@ from ccai.restclient.proxmox.proxmoxclient import ProxmoxClient
 PROXMOX_HOST = "pve.example.test"
 PROXMOX_BASE = "https://pve.example.test:8006"
 
-
-@pytest.fixture
-def token_credential() -> ProxmoxApiTokenCredential:
+@testbase.register.resource_factory()
+def create_proxmox_token_credential(constraints=None) -> Generator[ProxmoxApiTokenCredential, None, None]:
     """
         Build a Proxmox API-token credential for the test client.
 
@@ -38,11 +41,11 @@ def token_credential() -> ProxmoxApiTokenCredential:
         token_id="root@pam!automation",
         secret="00000000-0000-0000-0000-000000000000",
     )
-    return rtnval
+    yield rtnval
 
 
-@pytest.fixture
-def fast_aspects() -> AspectsProxmox:
+@testbase.register.resource_factory()
+def create_proxmox_fast_aspects(constraints=None) -> Generator[AspectsProxmox, None, None]:
     """
         Build aspects tuned for fast, deterministic test polling.
 
@@ -50,11 +53,11 @@ def fast_aspects() -> AspectsProxmox:
     """
     rtnval = AspectsProxmox(completion_timeout=5.0,
                             task_poll_interval_seconds=0.001)
-    return rtnval
+    yield rtnval
 
 
-@pytest.fixture
-def client(token_credential, fast_aspects) -> ProxmoxClient:
+@testbase.register.resource_factory()
+def create_proxmox_client(token_credential, fast_aspects, constraints=None) -> Generator[ProxmoxClient, None, None]:
     """
         Build a :class:`ProxmoxClient` bound to the test host.
 
@@ -62,4 +65,25 @@ def client(token_credential, fast_aspects) -> ProxmoxClient:
     """
     rtnval = ProxmoxClient(credential=token_credential, host=PROXMOX_HOST,
                            aspects=fast_aspects)
-    return rtnval
+    yield rtnval
+
+
+@testbase.register.resource_factory()
+def create_proxmox_requests_mock(
+        constraints=None) -> Generator[requests_mock_module.Mocker, None, None]:
+    """
+        Yield an active ``requests_mock`` Mocker for one test.
+
+        Stands in for the ``requests_mock`` pytest plugin fixture, which
+        testbase cannot supply.
+
+        Attached per test rather than originated in this scope: a Mocker
+        accumulates the URIs registered against it, so a shared one would let
+        one test's registrations answer another test's requests.
+
+        :param constraints: Optional constraint dictionary.
+
+        :returns: A generator yielding an active Mocker, deactivated afterwards.
+    """
+    with requests_mock_module.Mocker() as mocker:
+        yield mocker

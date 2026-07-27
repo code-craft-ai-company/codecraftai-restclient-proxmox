@@ -25,9 +25,10 @@ from ccai.restclient.proxmox.specs.proxmoxfirewallrulespec import (
     ProxmoxFirewallRuleSpec
 )
 
-from conftest import PROXMOX_BASE
+from ccai.tests.restclient.proxmox.factories import (PROXMOX_BASE, create_proxmox_requests_mock)
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_cluster_status_parses_nodes(client, requests_mock):
     """
         Cluster status separates the cluster entry from node entries.
@@ -47,6 +48,7 @@ def test_cluster_status_parses_nodes(client, requests_mock):
     assert len(status.nodes) == 2
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_list_nodes(client, requests_mock):
     """
         Node enumeration returns typed records with online state.
@@ -66,6 +68,7 @@ def test_list_nodes(client, requests_mock):
     assert nodes[1].online is False
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_list_node_networks_and_storages(client, requests_mock):
     """
         Network and storage enumeration return typed records.
@@ -90,6 +93,7 @@ def test_list_node_networks_and_storages(client, requests_mock):
     assert "images" in stores[0].content
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_clone_vm_from_template_returns_task_handle(client, requests_mock):
     """
         A VM clone-from-template returns a :class:`ProxmoxTaskHandle` bound
@@ -108,6 +112,7 @@ def test_clone_vm_from_template_returns_task_handle(client, requests_mock):
     assert "newid=120" in matcher.last_request.text
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_attach_disk_is_idempotent(client, requests_mock):
     """
         Attaching a disk into a slot that already carries the requested
@@ -128,6 +133,7 @@ def test_attach_disk_is_idempotent(client, requests_mock):
     assert put_matcher.call_count == 0
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_attach_disk_issues_change_when_absent(client, requests_mock):
     """
         Attaching a disk into an empty slot issues a config PUT.
@@ -147,6 +153,7 @@ def test_attach_disk_issues_change_when_absent(client, requests_mock):
     assert put_matcher.call_count == 1
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_attach_nic_is_idempotent(client, requests_mock):
     """
         Attaching a NIC into a slot already carrying the config is a no-op.
@@ -166,6 +173,7 @@ def test_attach_nic_is_idempotent(client, requests_mock):
     assert put_matcher.call_count == 0
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_destroy_vm_absent_is_noop(client, requests_mock):
     """
         Destroying an absent vmid succeeds as a no-op and returns ``None``.
@@ -179,6 +187,7 @@ def test_destroy_vm_absent_is_noop(client, requests_mock):
     assert handle is None
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_destroy_container_absent_is_noop(client, requests_mock):
     """
         Destroying an absent LXC vmid succeeds as a no-op.
@@ -192,6 +201,7 @@ def test_destroy_container_absent_is_noop(client, requests_mock):
     assert handle is None
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_list_templates_filters(client, requests_mock):
     """
         Template listing returns only VMs marked as templates.
@@ -211,6 +221,7 @@ def test_list_templates_filters(client, requests_mock):
     assert templates[0].vmid == 9000
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_firewall_add_rule_is_idempotent(client, requests_mock):
     """
         Adding a firewall rule whose identity tuple already exists is a
@@ -234,6 +245,7 @@ def test_firewall_add_rule_is_idempotent(client, requests_mock):
     assert post_matcher.call_count == 0
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_http_error_reclassified_as_semantic_error(client, requests_mock):
     """
         A non-2xx response from a read endpoint is reclassified into a

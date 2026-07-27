@@ -20,7 +20,7 @@ from ccai.restclient.proxmox.exceptions.proxmoxtaskfailederror import (
 )
 from ccai.restclient.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
 
-from conftest import PROXMOX_BASE
+from ccai.tests.restclient.proxmox.factories import (PROXMOX_BASE, create_proxmox_requests_mock)
 
 
 _UPID = "UPID:pve1:00001234:task::root@pam:"
@@ -29,6 +29,7 @@ _STATUS_URL = "{}/api2/json/nodes/pve1/tasks/{}/status".format(
 )
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_task_completes_successfully(client, fast_aspects, requests_mock):
     """
         A UPID task that transitions to ``stopped`` with exit status ``OK``
@@ -46,6 +47,7 @@ def test_task_completes_successfully(client, fast_aspects, requests_mock):
     assert handle.is_done() is True
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_task_failure_raises(client, fast_aspects, requests_mock):
     """
         A UPID task that ends with a non-OK exit status raises
@@ -60,6 +62,7 @@ def test_task_failure_raises(client, fast_aspects, requests_mock):
         handle.wait(aspects=fast_aspects)
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_task_timeout_raises(client, requests_mock):
     """
         A UPID task that never reaches a terminal state raises

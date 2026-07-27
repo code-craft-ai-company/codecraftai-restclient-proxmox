@@ -24,9 +24,10 @@ from ccai.restclient.proxmox.exceptions.proxmoxauthenticationerror import (
     ProxmoxAuthenticationError
 )
 
-from conftest import PROXMOX_BASE, PROXMOX_HOST
+from ccai.tests.restclient.proxmox.factories import (PROXMOX_BASE, PROXMOX_HOST, create_proxmox_requests_mock)
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_api_token_auth_sets_authorization_header(client, requests_mock):
     """
         An API-token credential drives a ``PVEAPIToken`` Authorization
@@ -55,6 +56,7 @@ def test_construction_rejects_non_proxmox_credential():
         ProxmoxClient(credential=bad_credential, host=PROXMOX_HOST)
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_ticket_auth_captures_ticket_and_csrf(requests_mock):
     """
         A ticket credential exchanges at ``/access/ticket`` and the captured
@@ -84,6 +86,7 @@ def test_ticket_auth_captures_ticket_and_csrf(requests_mock):
         "CSRFPreventionToken", "") == "csrf-value"
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_ticket_auth_failure_raises(requests_mock):
     """
         A rejected ticket exchange raises :class:`ProxmoxAuthenticationError`.
@@ -104,6 +107,7 @@ def test_ticket_auth_failure_raises(requests_mock):
         client.cluster.status()
 
 
+@testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")
 def test_ticket_remint_on_expiry(requests_mock):
     """
         A stale ticket is transparently re-minted without surfacing the
