@@ -14,9 +14,11 @@ __copyright__ = "Copyright 2026, Code Craft AI LLC"
 __credits__ = []
 
 
+from ccai import testbase
+
+
 from urllib.parse import quote
 
-import pytest
 
 from ccai.testbase.properties import given
 from ccai.testbase.properties import strategies as st
@@ -64,7 +66,7 @@ def test_compose_leaf_rejects_empty_segment(prefix, suffix):
         :class:`SemanticError`.
     """
     parts = list(prefix) + [""] + list(suffix)
-    with pytest.raises(SemanticError):
+    with testbase.raises(SemanticError):
         compose_leaf(parts=parts)
 
 
@@ -76,7 +78,7 @@ def test_compose_leaf_rejects_none_segment(prefix, suffix):
         A ``None`` path segment anywhere in the parts list is rejected.
     """
     parts = list(prefix) + [None] + list(suffix)
-    with pytest.raises(SemanticError):
+    with testbase.raises(SemanticError):
         compose_leaf(parts=parts)
 
 

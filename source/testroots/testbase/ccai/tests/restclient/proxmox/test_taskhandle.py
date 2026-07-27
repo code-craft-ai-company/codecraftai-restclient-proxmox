@@ -12,7 +12,8 @@ __copyright__ = "Copyright 2026, Code Craft AI LLC"
 __credits__ = []
 
 
-import pytest
+from ccai import testbase
+
 
 from ccai.restclient.proxmox.exceptions.proxmoxtaskfailederror import (
     ProxmoxTaskFailedError
@@ -55,7 +56,7 @@ def test_task_failure_raises(client, fast_aspects, requests_mock):
     })
 
     handle = ProxmoxTaskHandle(upid=_UPID, node_name="pve1", client=client)
-    with pytest.raises(ProxmoxTaskFailedError):
+    with testbase.raises(ProxmoxTaskFailedError):
         handle.wait(aspects=fast_aspects)
 
 
@@ -71,7 +72,7 @@ def test_task_timeout_raises(client, requests_mock):
     short_aspects = AspectsProxmox(completion_timeout=0.05,
                                    task_poll_interval_seconds=0.01)
     handle = ProxmoxTaskHandle(upid=_UPID, node_name="pve1", client=client)
-    with pytest.raises(TimeoutError):
+    with testbase.raises(TimeoutError):
         handle.wait(aspects=short_aspects)
 
 

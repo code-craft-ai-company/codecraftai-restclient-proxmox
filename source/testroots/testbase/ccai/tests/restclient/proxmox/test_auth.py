@@ -12,7 +12,8 @@ __copyright__ = "Copyright 2026, Code Craft AI LLC"
 __credits__ = []
 
 
-import pytest
+from ccai import testbase
+
 
 from ccai.errors.exceptions import ConfigurationError
 
@@ -50,7 +51,7 @@ def test_construction_rejects_non_proxmox_credential():
         identifier="bad", categories=["basic"],
         username="root", password="secret",
     )
-    with pytest.raises(ConfigurationError):
+    with testbase.raises(ConfigurationError):
         ProxmoxClient(credential=bad_credential, host=PROXMOX_HOST)
 
 
@@ -99,7 +100,7 @@ def test_ticket_auth_failure_raises(requests_mock):
     )
 
     client = ProxmoxClient(credential=_TicketCredential(), host=PROXMOX_HOST)
-    with pytest.raises(ProxmoxAuthenticationError):
+    with testbase.raises(ProxmoxAuthenticationError):
         client.cluster.status()
 
 

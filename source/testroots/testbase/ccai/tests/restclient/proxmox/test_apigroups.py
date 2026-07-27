@@ -13,7 +13,8 @@ __copyright__ = "Copyright 2026, Code Craft AI LLC"
 __credits__ = []
 
 
-import pytest
+from ccai import testbase
+
 
 from ccai.errors.exceptions import SemanticError
 
@@ -243,7 +244,7 @@ def test_http_error_reclassified_as_semantic_error(client, requests_mock):
         status_code=500, text="internal server error",
     )
 
-    with pytest.raises(SemanticError):
+    with testbase.raises(SemanticError):
         client.nodes.list()
 
 
@@ -251,5 +252,5 @@ def test_invalid_node_name_raises_semantic_error(client):
     """
         An empty node name is rejected before any HTTP call.
     """
-    with pytest.raises(SemanticError):
+    with testbase.raises(SemanticError):
         client.qemu.list_vms(node_name="")
