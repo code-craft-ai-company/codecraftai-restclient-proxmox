@@ -20,7 +20,7 @@ from ccai.restclient.proxmox.exceptions.proxmoxtaskfailederror import (
 )
 from ccai.restclient.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
 
-from ccai.tests.restclient.proxmox.factories import (PROXMOX_BASE, create_proxmox_requests_mock)
+from .factories import (PROXMOX_BASE, create_proxmox_requests_mock)
 
 
 _UPID = "UPID:pve1:00001234:task::root@pam:"

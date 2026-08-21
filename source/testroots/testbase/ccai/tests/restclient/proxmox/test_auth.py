@@ -24,7 +24,7 @@ from ccai.restclient.proxmox.exceptions.proxmoxauthenticationerror import (
     ProxmoxAuthenticationError
 )
 
-from ccai.tests.restclient.proxmox.factories import (PROXMOX_BASE, PROXMOX_HOST, create_proxmox_requests_mock)
+from .factories import (PROXMOX_BASE, PROXMOX_HOST, create_proxmox_requests_mock)
 
 
 @testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")

@@ -25,7 +25,7 @@ from ccai.restclient.proxmox.specs.proxmoxfirewallrulespec import (
     ProxmoxFirewallRuleSpec
 )
 
-from ccai.tests.restclient.proxmox.factories import (PROXMOX_BASE, create_proxmox_requests_mock)
+from .factories import (PROXMOX_BASE, create_proxmox_requests_mock)
 
 
 @testbase.attach.parameter(create_proxmox_requests_mock, identifier="requests_mock")

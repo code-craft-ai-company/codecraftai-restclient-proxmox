@@ -31,7 +31,7 @@ from ccai.restclient.proxmox.apigroups.groupsupport import (
 from ccai.restclient.proxmox.model.proxmoxtaskstatus import ProxmoxTaskStatus
 from ccai.restclient.proxmox.model.proxmoxtaskhandle import ProxmoxTaskHandle
 
-from ccai.tests.restclient.proxmox.factories import create_proxmox_requests_mock
+from .factories import create_proxmox_requests_mock
 
 
 # Path segments that are non-empty and free of slash so per-segment
@@ -90,7 +90,7 @@ def test_list_vms_total_over_long_lists(client, requests_mock, count):
     """
         VM enumeration remains total over arbitrarily long flat lists.
     """
-    from ccai.tests.restclient.proxmox.factories import PROXMOX_BASE
+    from .factories import PROXMOX_BASE
 
     entries = []
     for index in range(count):
@@ -115,7 +115,7 @@ def test_task_handle_terminal_state(client, requests_mock, running_polls,
         For any monotonic UPID status stream that ends in ``stopped`` the
         task handle reports the correct terminal success/failure outcome.
     """
-    from ccai.tests.restclient.proxmox.factories import PROXMOX_BASE
+    from .factories import PROXMOX_BASE
     from ccai.restclient.proxmox.aspectsproxmox import AspectsProxmox
 
     upid = "UPID:pve1:abc:task::root@pam:"

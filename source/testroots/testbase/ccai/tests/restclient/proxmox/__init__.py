@@ -11,7 +11,7 @@
 
 from ccai import testbase
 
-from ccai.tests.restclient.proxmox.factories import (
+from .factories import (
     create_proxmox_token_credential,
     create_proxmox_fast_aspects,
     create_proxmox_client,
